@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace WpfAppLearn
 {
@@ -24,6 +25,33 @@ namespace WpfAppLearn
         public MainWindow()
         {
             InitializeComponent();
+          
+
+        }
+
+        public async void testc()
+        {
+
+            var controller = await this.ShowProgressAsync("WAIT WHILE WE DO STUFF!", "Searching...");
+              //System.Threading.Thread.Sleep(5000);
+              int charCount = 100000;
+              await Task.Run(() =>
+              {
+
+                  for (int i = 0; i < charCount; i++)
+                  {
+                      controller.SetProgress(i * .00001);
+                  }
+
+                  controller.SetProgress(1.0);
+              });
+              await controller.CloseAsync();
+          
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            testc();
         }
     }
 }
