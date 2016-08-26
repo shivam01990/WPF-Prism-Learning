@@ -48,3 +48,5 @@ D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\bin\Debug\Microsoft.Pra
 D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\bin\Debug\Prism.xml
 D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\bin\Debug\Prism.Unity.Wpf.xml
 D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\bin\Debug\Prism.Wpf.xml
+D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\obj\Debug\Views\LogOn.baml
+D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\obj\Debug\Views\LogOn.g.cs
