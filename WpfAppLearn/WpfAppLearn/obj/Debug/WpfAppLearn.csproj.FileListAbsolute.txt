@@ -50,3 +50,5 @@ D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\bin\Debug\Prism.Unity.W
 D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\bin\Debug\Prism.Wpf.xml
 D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\obj\Debug\Views\LogOn.baml
 D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\obj\Debug\Views\LogOn.g.cs
+D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\ShivamDocs\WPF-Prism-Learning\WpfAppLearn\WpfAppLearn\obj\Debug\WpfAppLearn_MarkupCompile.lref

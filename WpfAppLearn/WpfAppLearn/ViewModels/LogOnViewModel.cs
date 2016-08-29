@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace WpfAppLearn.ViewModels
 {
     public class LogOnViewModel : BindableBase
     {
-        private string resultMessage;
+          private string resultMessage;
         public string InteractionResultMessage
         {
             get
@@ -27,6 +28,7 @@ namespace WpfAppLearn.ViewModels
         }
         private string _username;
         private string _password;
+        private bool _close;
 
         public string UserName
         {
@@ -52,9 +54,22 @@ namespace WpfAppLearn.ViewModels
             }
         }
 
+     
+        public bool Close
+        {
+            get
+            {
+                return _close;
+            }
+            set
+            {
+                SetProperty(ref _close, value);                     
+            }
+        }
+
         public LogOnViewModel()
         {
-            this.LoginCommand = new DelegateCommand(this.Login);
+            this.LoginCommand = new DelegateCommand<object>(this.Login);
             this.NotificationRequest = new InteractionRequest<INotification>();
         }
 
@@ -62,14 +77,21 @@ namespace WpfAppLearn.ViewModels
         public ICommand CancelCommand { get; private set; }
         public InteractionRequest<INotification> NotificationRequest { get; private set; }
 
-        public void Login()
+        public void Login(object arg)
         {
             //this.NotificationRequest.Raise(
             //   new Notification { Content = "Notification Message", Title = "Notification" },
             //   n => { InteractionResultMessage = "The user was notified."; });
+            var passwordBox = (PasswordBox)arg;
+            Password = passwordBox.Password;
+            if (UserName == "shivam" && Password == "123456")
+            {
 
+                Close = true;
+            }
 
         }
 
+   
     }
 }
