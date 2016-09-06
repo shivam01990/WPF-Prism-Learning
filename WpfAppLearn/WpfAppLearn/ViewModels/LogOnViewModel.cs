@@ -3,6 +3,7 @@ using Prism.Interactivity.InteractionRequest;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,21 +12,36 @@ using System.Windows.Input;
 
 namespace WpfAppLearn.ViewModels
 {
-    public class LogOnViewModel : BindableBase
+    public class LogOnViewModel : BindableBase, IDataErrorInfo
     {
-          private string resultMessage;
-        public string InteractionResultMessage
+        #region IDataErrorInfo Login
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
         {
             get
             {
-                return this.resultMessage;
-            }
-            set
-            {
-                this.resultMessage = value;
-                this.OnPropertyChanged("InteractionResultMessage");
+                string result = null;
+                if (columnName == "UserName")
+                {
+                    if (string.IsNullOrEmpty(UserName))
+                        result = "Please enter a User Name";
+                }
+                if (columnName == "Password")
+                {
+                    if (string.IsNullOrEmpty(Password))
+                        result = "Please enter a Password.";
+                }
+                return result;
             }
         }
+
+        #endregion
+
         private string _username;
         private string _password;
         private bool _close;
@@ -51,10 +67,11 @@ namespace WpfAppLearn.ViewModels
             set
             {
                 SetProperty(ref _password, value);
+
             }
         }
 
-     
+
         public bool Close
         {
             get
@@ -63,14 +80,19 @@ namespace WpfAppLearn.ViewModels
             }
             set
             {
-                SetProperty(ref _close, value);                     
+                SetProperty(ref _close, value);
             }
         }
 
         public LogOnViewModel()
         {
-            this.LoginCommand = new DelegateCommand<object>(this.Login);
-            this.NotificationRequest = new InteractionRequest<INotification>();
+            this.LoginCommand = new DelegateCommand<object>(this.Login, CanExecute).ObservesProperty(() => UserName);
+
+        }
+
+        private bool CanExecute(object arg)
+        {
+            return !string.IsNullOrWhiteSpace(UserName);
         }
 
         public ICommand LoginCommand { get; private set; }
@@ -79,9 +101,6 @@ namespace WpfAppLearn.ViewModels
 
         public void Login(object arg)
         {
-            //this.NotificationRequest.Raise(
-            //   new Notification { Content = "Notification Message", Title = "Notification" },
-            //   n => { InteractionResultMessage = "The user was notified."; });
             var passwordBox = (PasswordBox)arg;
             Password = passwordBox.Password;
             if (UserName == "shivam" && Password == "123456")
@@ -92,6 +111,6 @@ namespace WpfAppLearn.ViewModels
 
         }
 
-   
+
     }
 }
